@@ -4,12 +4,22 @@ import com.example.metrix.R
 import com.example.metrix.data.enums.FigureName
 import com.example.metrix.data.models.Figure
 
-object Rectangle : Figure(
+class Rectangle(
+    var b: Double = 0.0,
+    var h: Double = 0.0,
+    var perimeter: Double = 2 * (b + h),
+    var area: Double = b * h,
+    var perimeter_parameters: Array<String> = arrayOf("b", "h"),
+    var area_parameters: Array<String> = arrayOf("b", "h"),
+)
+    : Figure(
     imageID = R.drawable.rectangle,
     name = FigureName.Rectangle,
-    perimeterFormula = "P = 2 (b + h) ",
+    perimeterFormula = "P = 2 (b + h)",
     areaFormula = "A = b×h",
-) {
+)
+/*
+{
     fun perimeter(b: Int, h: Int) = 2 * (b + h)
     fun area(b: Int, h: Int) = b * h
-}
+}*/
