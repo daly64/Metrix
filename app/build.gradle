@@ -47,6 +47,8 @@ android {
 }
 
 dependencies {
+// Fix  Duplicate class in Kotlin Android
+    implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
 
     implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'

@@ -11,13 +11,15 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.metrix.data.figures.Triangle
+import com.example.metrix.data.enums.FigureName
+import com.example.metrix.data.models.Figure
 import com.example.metrix.ui.theme.MetrixTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("TAG" , Triangle.name.toString())
+        val figure = Figure(FigureName.Triangle)
+        Log.d("TAG", figure.cotes.size.toString())
         setContent {
             MetrixTheme {
                 // A surface container using the 'background' color from the theme
