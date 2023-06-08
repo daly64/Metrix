@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Metrix</string>
+    <string name="Home_label">Calculer le périmètre et l\'aire d\'une figure</string>
+    <string name="commencer">Commencer</string>
+    <string name="value_screen">sélectionner la valeur a calculer :</string>
+    <string name="primtre">"    Périmètre   "</string>
+    <string name="aire">"          Aire          "</string>
+    <string name="centimtrem">"    Centimètre (cm)  "</string>
+    <string name="metre">"          Mètre (m)       "</string>
+    <string name="mesure_select">sélectionner l\'unité de mesure :</string>
+    <string name="selectionner_une_fugure">sélectionner une fugure :</string>
 </resources>
