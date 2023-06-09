@@ -12,13 +12,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MetrixTheme {
-//                Home()
-//                RequestedValue()
-//                Formes()
-
                 Navigation()
-
-
             }
         }
     }

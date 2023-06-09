@@ -16,13 +16,16 @@ fun Navigation() {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = MetrixScreen.Home.name) {
-        composable(MetrixScreen.Home.name) { Home() }
-        composable(MetrixScreen.Formes.name) { Formes() }
-        composable(MetrixScreen.RequestedValue.name) { RequestedValue() }
-        composable(MetrixScreen.MesureUnite.name) { MesureUnit() }
-        composable(MetrixScreen.Forme.name) { Forme() }
-        composable(MetrixScreen.Result.name) { Result() }
+        startDestination = MetrixScreen.Home.name
+    ) {
+        composable(MetrixScreen.Home.name) { Home(navController = navController) }
+        composable(MetrixScreen.Formes.name) { Formes(navController = navController) }
+        composable(MetrixScreen.RequestedValue.name) { RequestedValue(navController = navController) }
+        composable(MetrixScreen.MesureUnite.name) { MesureUnit(navController = navController) }
+        composable(MetrixScreen.Forme.name) { Forme(navController = navController) }
+        composable(MetrixScreen.Result.name) { Result(navController = navController) }
 
     }
+
 }
+

@@ -9,4 +9,5 @@
     <string name="metre">"          Mètre (m)       "</string>
     <string name="mesure_select">sélectionner l\'unité de mesure :</string>
     <string name="selectionner_une_fugure">sélectionner une fugure :</string>
+    <string name="retour">Retour</string>
 </resources>
