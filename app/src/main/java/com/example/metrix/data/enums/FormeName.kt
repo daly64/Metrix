@@ -1,5 +1,5 @@
 package com.example.metrix.data.enums
 
-enum class FigureName {
+enum class FormeName {
     Triangle, Carre, Rectangle, Parallelogramme, Losange, Trapeze, Polygone, Cercle
 }

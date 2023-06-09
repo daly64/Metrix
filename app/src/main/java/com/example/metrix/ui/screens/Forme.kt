@@ -16,42 +16,42 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.metrix.data.enums.FigureName
-import com.example.metrix.data.models.Figure
+import com.example.metrix.data.enums.FormeName
+import com.example.metrix.data.models.Forme
 import com.example.metrix.ui.theme.MetrixTheme
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FormScreen(modifier: Modifier = Modifier) {
-    val figure = Figure(FigureName.Triangle)
+fun Forme(modifier: Modifier = Modifier) {
+    val forme = Forme(FormeName.Triangle)
     Column(
         modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
         Image(
-            painter = painterResource(id = figure.imageID),
+            painter = painterResource(id = forme.imageID),
             contentDescription = null,
             modifier = Modifier.size(300.dp)
         )
         Text(
-            text = figure.name.toString(),
+            text = forme.name.toString(),
             style = MaterialTheme.typography.displayMedium,
             color = MaterialTheme.colorScheme.primary
         )
 
         Text(
-            text = figure.perimeterFormula,
+            text = forme.perimeterFormula,
             style = MaterialTheme.typography.titleLarge,
         )
         Text(
-            text = figure.areaFormula,
+            text = forme.areaFormula,
             style = MaterialTheme.typography.titleLarge,
         )
 
 
-        figure.cotes.keys.forEach { cote ->
+        forme.cotes.keys.forEach { cote ->
             TextField(
                 value = "",
                 onValueChange = { },
@@ -71,8 +71,8 @@ fun FormScreen(modifier: Modifier = Modifier) {
 
 @Preview(showBackground = true)
 @Composable
-fun FormScreenPreview() {
+fun FormePreview() {
     MetrixTheme {
-        FormScreen()
+        Forme()
     }
 }

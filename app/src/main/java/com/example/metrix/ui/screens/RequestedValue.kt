@@ -17,12 +17,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.metrix.R
-import com.example.metrix.data.enums.FigureName
 import com.example.metrix.ui.theme.MetrixTheme
 
 @Composable
-fun FormSelectionScreen(modifier: Modifier = Modifier) {
-
+fun RequestedValue(modifier: Modifier = Modifier) {
     Column(
         modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -30,33 +28,32 @@ fun FormSelectionScreen(modifier: Modifier = Modifier) {
     ) {
 
         Text(
-            text = stringResource(R.string.selectionner_une_fugure),
+            text = stringResource(R.string.value_screen),
             style = MaterialTheme.typography.titleLarge,
             textAlign = TextAlign.Center,
             modifier = Modifier.width(325.dp)
         )
-
-        FigureName.values().forEach {
-            Spacer(modifier = Modifier.size(20.dp))
-            Button(onClick = {  }) {
-                Text(
-                    text = "    $it  ",
-                    style = MaterialTheme.typography.titleLarge,
-                )
-            }
+        Spacer(modifier = Modifier.size(30.dp))
+        Button(onClick = {  }) {
+            Text(
+                text = stringResource(R.string.primtre),
+                style = MaterialTheme.typography.displaySmall,
+            )
         }
-
-
-
-
-
+        Spacer(modifier = Modifier.size(30.dp))
+        Button(onClick = {  }) {
+            Text(
+                text = stringResource(R.string.aire),
+                style = MaterialTheme.typography.displaySmall,
+            )
+        }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun FormSelectionScreenPreview() {
+fun RequestedValuePreview() {
     MetrixTheme {
-        FormSelectionScreen()
+        RequestedValue()
     }
 }
