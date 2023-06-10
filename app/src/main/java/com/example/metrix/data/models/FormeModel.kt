@@ -113,7 +113,7 @@ fun getAreaCotes(formeName: FormeName): Array<String> =
     }
 
 
-class Forme(
+class FormeModel(
     var name: FormeName,
     @DrawableRes var imageID: Int = getImageID(name),
     var perimeterFormula: String = getPerimeterFormula(name),

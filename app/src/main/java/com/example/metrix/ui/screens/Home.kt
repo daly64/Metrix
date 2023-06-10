@@ -19,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.metrix.R
-import com.example.metrix.ui.navigation.MetrixScreen
+import com.example.metrix.data.enums.MetrixScreen
 import com.example.metrix.ui.screens.element.AppButton
 import com.example.metrix.ui.theme.MetrixTheme
 

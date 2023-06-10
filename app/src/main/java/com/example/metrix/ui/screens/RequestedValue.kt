@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -18,7 +19,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.metrix.R
-import com.example.metrix.ui.navigation.MetrixScreen
+import com.example.metrix.data.enums.MetrixScreen
+import com.example.metrix.data.enums.SelectRequestedValue
 import com.example.metrix.ui.screens.element.AppButton
 import com.example.metrix.ui.theme.MetrixTheme
 
@@ -26,6 +28,7 @@ import com.example.metrix.ui.theme.MetrixTheme
 fun RequestedValue(
     modifier: Modifier = Modifier,
     navController: NavController = NavController(LocalContext.current),
+    requestedValueState: MutableState<SelectRequestedValue>? = null,
 ) {
     fun goTo(destination: MetrixScreen) = navController.navigate(destination.name)
     Column(
@@ -42,17 +45,23 @@ fun RequestedValue(
         )
         Spacer(modifier = Modifier.size(30.dp))
         AppButton(
-            onClick = { goTo(MetrixScreen.MesureUnite) },
+            onClick = {
+                goTo(MetrixScreen.MesureUnite)
+                requestedValueState!!.value = SelectRequestedValue.Perimetre
+            },
             text = stringResource(R.string.primtre),
         )
 
         Spacer(modifier = Modifier.size(30.dp))
         AppButton(
-            onClick = { goTo(MetrixScreen.MesureUnite) },
+            onClick = {
+                goTo(MetrixScreen.MesureUnite)
+                requestedValueState!!.value = SelectRequestedValue.Aire
+            },
             text = stringResource(R.string.aire),
         )
 
-}
+    }
 }
 
 @Preview(showBackground = true)

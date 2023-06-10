@@ -3,7 +3,6 @@ package com.example.metrix.ui.screens.element
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -15,7 +14,8 @@ import com.example.metrix.ui.theme.MetrixTheme
 fun AppTextField(
     value: String = "",
     onValueChange: (String) -> Unit = {},
-    placeholder: @Composable (() -> Unit) = { Text(text = "app textfield") },) {
+    placeholder: @Composable (() -> Unit) = {},
+) {
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,

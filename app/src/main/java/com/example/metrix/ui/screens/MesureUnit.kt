@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -18,7 +19,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.metrix.R
-import com.example.metrix.ui.navigation.MetrixScreen
+import com.example.metrix.data.enums.MetrixScreen
+import com.example.metrix.data.enums.SelectMesureUnit
 import com.example.metrix.ui.screens.element.AppButton
 import com.example.metrix.ui.theme.MetrixTheme
 
@@ -27,6 +29,7 @@ import com.example.metrix.ui.theme.MetrixTheme
 fun MesureUnit(
     modifier: Modifier = Modifier,
     navController: NavController = NavController(LocalContext.current),
+    mesureUnitState: MutableState<SelectMesureUnit>? = null,
 ) {
     fun goTo(destination: MetrixScreen) = navController.navigate(destination.name)
     Column(
@@ -43,13 +46,20 @@ fun MesureUnit(
         )
         Spacer(modifier = Modifier.size(30.dp))
         AppButton(
-            onClick = { goTo(MetrixScreen.Forme) },
+            onClick = {
+                goTo(MetrixScreen.Forme)
+                mesureUnitState!!.value = SelectMesureUnit.Centimetre
+            },
             text = stringResource(R.string.centimtrem)
         )
         Spacer(modifier = Modifier.size(30.dp))
         AppButton(
-            onClick = { goTo(MetrixScreen.Forme) },
-            text = stringResource(R.string.metre))
+            onClick = {
+                goTo(MetrixScreen.Forme)
+                mesureUnitState!!.value = SelectMesureUnit.Metre
+            },
+            text = stringResource(R.string.metre)
+        )
 
 
     }
