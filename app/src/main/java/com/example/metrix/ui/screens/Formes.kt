@@ -4,11 +4,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,6 +20,7 @@ import androidx.navigation.NavController
 import com.example.metrix.R
 import com.example.metrix.data.enums.FormeName
 import com.example.metrix.ui.navigation.MetrixScreen
+import com.example.metrix.ui.screens.element.AppButton
 import com.example.metrix.ui.theme.MetrixTheme
 
 @Composable
@@ -38,21 +36,17 @@ fun Formes(modifier: Modifier = Modifier,
 
         Text(
             text = stringResource(R.string.selectionner_une_fugure),
-            style = MaterialTheme.typography.titleLarge,
+            style = MaterialTheme.typography.headlineLarge,
             textAlign = TextAlign.Center,
             modifier = Modifier.width(325.dp)
         )
 
         FormeName.values().forEach {
-            Spacer(modifier = Modifier.size(20.dp))
-            Button(onClick = { goTo(MetrixScreen.RequestedValue) },
-                shape = RoundedCornerShape(0.dp),
-                modifier = Modifier.fillMaxWidth()) {
-                Text(
-                    text = "    $it  ",
-                    style = MaterialTheme.typography.titleLarge,
-                )
-            }
+            Spacer(modifier = Modifier.size(10.dp))
+            AppButton(
+                onClick = { goTo(MetrixScreen.RequestedValue) },
+                text = "    $it  ",
+            )
         }
 
 

@@ -4,11 +4,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.metrix.R
 import com.example.metrix.ui.navigation.MetrixScreen
+import com.example.metrix.ui.screens.element.AppButton
 import com.example.metrix.ui.theme.MetrixTheme
 
 @Composable
@@ -38,33 +36,23 @@ fun RequestedValue(
 
         Text(
             text = stringResource(R.string.value_screen),
-            style = MaterialTheme.typography.titleLarge,
+            style = MaterialTheme.typography.headlineLarge,
             textAlign = TextAlign.Center,
             modifier = Modifier.width(325.dp)
         )
         Spacer(modifier = Modifier.size(30.dp))
-        Button(
+        AppButton(
             onClick = { goTo(MetrixScreen.MesureUnite) },
-            shape = RoundedCornerShape(0.dp),
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Text(
-                text = stringResource(R.string.primtre),
-                style = MaterialTheme.typography.displaySmall,
-            )
-        }
+            text = stringResource(R.string.primtre),
+        )
+
         Spacer(modifier = Modifier.size(30.dp))
-        Button(
+        AppButton(
             onClick = { goTo(MetrixScreen.MesureUnite) },
-            shape = RoundedCornerShape(0.dp),
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Text(
-                text = stringResource(R.string.aire),
-                style = MaterialTheme.typography.displaySmall,
-            )
-        }
-    }
+            text = stringResource(R.string.aire),
+        )
+
+}
 }
 
 @Preview(showBackground = true)

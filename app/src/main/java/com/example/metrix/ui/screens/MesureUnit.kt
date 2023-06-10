@@ -4,11 +4,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,12 +19,14 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.metrix.R
 import com.example.metrix.ui.navigation.MetrixScreen
+import com.example.metrix.ui.screens.element.AppButton
 import com.example.metrix.ui.theme.MetrixTheme
 
 
 @Composable
-fun MesureUnit(modifier: Modifier = Modifier,
-               navController: NavController = NavController(LocalContext.current),
+fun MesureUnit(
+    modifier: Modifier = Modifier,
+    navController: NavController = NavController(LocalContext.current),
 ) {
     fun goTo(destination: MetrixScreen) = navController.navigate(destination.name)
     Column(
@@ -38,28 +37,21 @@ fun MesureUnit(modifier: Modifier = Modifier,
 
         Text(
             text = stringResource(R.string.mesure_select),
-            style = MaterialTheme.typography.titleLarge,
+            style = MaterialTheme.typography.headlineLarge,
             textAlign = TextAlign.Center,
             modifier = Modifier.width(325.dp)
         )
         Spacer(modifier = Modifier.size(30.dp))
-        Button(onClick = { goTo(MetrixScreen.Forme) },
-            shape = RoundedCornerShape(0.dp),
-            modifier = Modifier.fillMaxWidth()) {
-            Text(
-                text = stringResource(R.string.centimtrem),
-                style = MaterialTheme.typography.displaySmall,
-            )
-        }
+        AppButton(
+            onClick = { goTo(MetrixScreen.Forme) },
+            text = stringResource(R.string.centimtrem)
+        )
         Spacer(modifier = Modifier.size(30.dp))
-        Button(onClick = {goTo(MetrixScreen.Forme) },
-            shape = RoundedCornerShape(0.dp),
-            modifier = Modifier.fillMaxWidth()) {
-            Text(
-                text = stringResource(R.string.metre),
-                style = MaterialTheme.typography.displaySmall,
-            )
-        }
+        AppButton(
+            onClick = { goTo(MetrixScreen.Forme) },
+            text = stringResource(R.string.metre))
+
+
     }
 }
 
