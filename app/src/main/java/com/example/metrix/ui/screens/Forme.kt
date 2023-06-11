@@ -31,6 +31,7 @@ import com.example.metrix.ui.screens.element.AppButton
 import com.example.metrix.ui.screens.element.AppCotesInput
 import com.example.metrix.ui.screens.element.AppFormulaLabel
 import com.example.metrix.ui.theme.MetrixTheme
+import kotlin.math.roundToLong
 
 
 @Composable
@@ -60,13 +61,16 @@ fun Forme(
             SelectRequestedValue.Perimetre -> {
                 forme.getPerimeter()
                 val unit = if (mesureUnit == SelectMesureUnit.Centimetre) " Cm" else " m"
-                "${forme.perimeterValue} $unit"
+                val value = (forme.perimeterValue.roundToLong()).toDouble()
+                "$value $unit"
             }
 
             SelectRequestedValue.Aire -> {
                 forme.getArea()
                 val unit = if (mesureUnit == SelectMesureUnit.Centimetre) " Cm²" else " m²"
-                "${forme.areaValue} $unit"
+//                "${forme.areaValue} $unit"
+                val value = (forme.areaValue.roundToLong()).toDouble()
+                "$value $unit"
             }
 
         }
