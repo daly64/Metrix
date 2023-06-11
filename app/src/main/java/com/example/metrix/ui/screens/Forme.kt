@@ -10,10 +10,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -28,8 +25,11 @@ import com.example.metrix.data.enums.MetrixScreen
 import com.example.metrix.data.enums.SelectMesureUnit
 import com.example.metrix.data.enums.SelectRequestedValue
 import com.example.metrix.data.models.FormeModel
+import com.example.metrix.data.models.getArea
+import com.example.metrix.data.models.getPerimeter
 import com.example.metrix.ui.screens.element.AppButton
-import com.example.metrix.ui.screens.element.AppTextField
+import com.example.metrix.ui.screens.element.AppCotesInput
+import com.example.metrix.ui.screens.element.AppFormulaLabel
 import com.example.metrix.ui.theme.MetrixTheme
 
 
@@ -40,23 +40,45 @@ fun Forme(
     formeState: MutableState<FormeModel>? = null,
     selectRequestedValueState: MutableState<SelectRequestedValue>? = null,
     mesureUnitState: MutableState<SelectMesureUnit>? = null,
-    resultState: MutableState<String>? = null,
+    resultState: MutableState<String> = mutableStateOf("0"),
 ) {
 
     val forme = formeState?.value ?: FormeModel(FormeName.Triangle)
     val requestedValue = selectRequestedValueState?.value ?: SelectRequestedValue.Perimetre
     val mesureUnit = mesureUnitState?.value ?: SelectMesureUnit.Metre
-    var result = resultState?.value ?: ""
 
 
     fun goTo(destination: MetrixScreen) = navController.navigate(destination.name)
+
+    fun calculat(
+        forme: FormeModel,
+        requestedValue: SelectRequestedValue,
+        mesureUnit: SelectMesureUnit,
+
+        ): String {
+        return when (requestedValue) {
+            SelectRequestedValue.Perimetre -> {
+                forme.getPerimeter()
+                val unit = if (mesureUnit == SelectMesureUnit.Centimetre) " Cm" else " m"
+                "${forme.perimeterValue} $unit"
+            }
+
+            SelectRequestedValue.Aire -> {
+                forme.getArea()
+                val unit = if (mesureUnit == SelectMesureUnit.Centimetre) " Cm²" else " m²"
+                "${forme.areaValue} $unit"
+            }
+
+        }
+    }
+
     Column(
         modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = forme.name.toString(),
+            text = forme.formeName.toString(),
             style = MaterialTheme.typography.displayMedium,
             color = MaterialTheme.colorScheme.primary
         )
@@ -65,55 +87,38 @@ fun Forme(
             contentDescription = null,
             modifier = Modifier.size(300.dp)
         )
-
-        if (requestedValue == SelectRequestedValue.Perimetre) {
-            Text(
-                text = forme.perimeterFormula,
-                style = MaterialTheme.typography.headlineMedium,
-            )
-        }
-
         Spacer(modifier = Modifier.size(10.dp))
-        if (requestedValue == SelectRequestedValue.Aire) {
-            Text(
-                text = forme.areaFormula,
-                style = MaterialTheme.typography.headlineMedium,
-            )
+
+        when (requestedValue) {
+            SelectRequestedValue.Perimetre -> {
+                AppFormulaLabel(formula = forme.perimeterFormula)
+                AppCotesInput(
+                    requestedCotes = forme.perimeterCotes,
+                    forme = forme
+                ) { resultState.value = calculat(forme, requestedValue, mesureUnit) }
+            }
+
+            SelectRequestedValue.Aire -> {
+                AppFormulaLabel(formula = forme.areaFormula)
+                AppCotesInput(
+                    requestedCotes = forme.areaCotes,
+                    forme = forme
+                ) { resultState.value = calculat(forme, requestedValue, mesureUnit) }
+            }
         }
 
 
-
-        forme.cotes.keys.forEach { cote ->
-            var coteValue = forme.cotes[cote]
-            var input by rememberSaveable { mutableStateOf("") }
-            Spacer(modifier = Modifier.size(15.dp))
-            AppTextField(
-                value = input,
-                onValueChange = { input = it },
-            )
-        }
         Spacer(modifier = Modifier.size(20.dp))
 
-        fun calculat(
-            forme: FormeModel,
-            requestedValue: SelectRequestedValue,
-            mesureUnit: SelectMesureUnit,
-        ) {
-            if (requestedValue == SelectRequestedValue.Perimetre) {
-                resultState!!.value = forme.perimeter.toString()
-            }
-            if (requestedValue == SelectRequestedValue.Aire) {
-                resultState!!.value = forme.area.toString()
-            }
 
-        }
-
+        Text(
+            text = "${requestedValue.name} = ${resultState.value}",
+            style = MaterialTheme.typography.headlineMedium,
+        )
+        Spacer(modifier = Modifier.size(20.dp))
         AppButton(
-            onClick = {
-                goTo(MetrixScreen.Result)
-                calculat(forme, requestedValue, mesureUnit)
-            },
-            text = stringResource(R.string.calculer)
+            onClick = { goTo(MetrixScreen.Home) },
+            text = stringResource(R.string.retour),
         )
 
     }

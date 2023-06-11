@@ -16,15 +16,14 @@ import com.example.metrix.ui.screens.Formes
 import com.example.metrix.ui.screens.Home
 import com.example.metrix.ui.screens.MesureUnit
 import com.example.metrix.ui.screens.RequestedValue
-import com.example.metrix.ui.screens.Result
 
 @Composable
 fun Navigation() {
     val navController = rememberNavController()
-    var formeState = remember { mutableStateOf(FormeModel(FormeName.Triangle)) }
-    var selectRequestedValueState = remember { mutableStateOf(SelectRequestedValue.Perimetre) }
-    var mesureUnitState = remember { mutableStateOf(SelectMesureUnit.Metre) }
-    var resultState = remember { mutableStateOf("") }
+    val formeState = remember { mutableStateOf(FormeModel(FormeName.Triangle)) }
+    val selectRequestedValueState = remember { mutableStateOf(SelectRequestedValue.Perimetre) }
+    val mesureUnitState = remember { mutableStateOf(SelectMesureUnit.Metre) }
+    val resultState = remember { mutableStateOf("") }
     NavHost(
         navController = navController,
         startDestination = MetrixScreen.Home.name
@@ -57,12 +56,7 @@ fun Navigation() {
                 resultState = resultState,
             )
         }
-        composable(MetrixScreen.Result.name) {
-            Result(
-                navController = navController,
-                resultState = resultState
-            )
-        }
+
 
     }
 
