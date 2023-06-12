@@ -16,7 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.metrix.data.enums.FormeName
 import com.example.metrix.data.models.FormeModel
-import com.example.metrix.data.models.setCote
+import com.example.metrix.data.setCote
 import com.example.metrix.ui.theme.MetrixTheme
 
 @Composable

@@ -1,10 +1,11 @@
-package com.example.metrix.data.models
+package com.example.metrix.data
 
 import com.example.metrix.data.enums.FormeName
+import com.example.metrix.data.models.FormeModel
 import kotlin.math.PI
 import kotlin.math.pow
 
-fun FormeModel.setCote(cote:String,  value: Double) {
+fun FormeModel.setCote(cote:String, value: Double) {
     cotes[cote]=value
 }
 

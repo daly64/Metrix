@@ -11,15 +11,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import com.example.metrix.R
-import com.example.metrix.data.enums.MetrixScreen
+import com.example.metrix.data.General.FormesScreen
+import com.example.metrix.data.General.goTo
 import com.example.metrix.ui.screens.element.AppButton
 import com.example.metrix.ui.theme.MetrixTheme
 
@@ -27,9 +26,7 @@ import com.example.metrix.ui.theme.MetrixTheme
 @Composable
 fun Home(
     modifier: Modifier = Modifier,
-    navController: NavController = NavController(LocalContext.current),
 ) {
-    fun goTo(destination: MetrixScreen) = navController.navigate(destination.name)
     Column(
         modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -53,7 +50,7 @@ fun Home(
         )
 
         AppButton(
-            onClick = { goTo(MetrixScreen.Formes) },
+            onClick = { goTo(FormesScreen) },
             text = stringResource(R.string.commencer),
         )
 
